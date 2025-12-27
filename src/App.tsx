@@ -24,6 +24,7 @@ function App() {
     priority: Priority;
     difficulty: Difficulty;
     examDate: string;
+    dailyHours: number;
   }) => {
     const newSubject: Subject = {
       id: Date.now().toString(),

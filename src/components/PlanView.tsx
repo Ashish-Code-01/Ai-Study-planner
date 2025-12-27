@@ -156,13 +156,18 @@ export function PlanView({ plan, viewMode, onViewModeChange, onStatusChange }: P
                   </div>
 
                   <div className="grid gap-3 md:grid-cols-2">
-                    {tasks.map((task) => (
-                      <TaskCard
-                        key={task.id}
-                        task={task}
-                        onStatusChange={onStatusChange}
-                      />
-                    ))}
+                    {tasks
+                      .sort((a, b) => {
+                        const priorityOrder = { high: 0, medium: 1, low: 2 };
+                        return priorityOrder[a.priority] - priorityOrder[b.priority];
+                      })
+                      .map((task) => (
+                        <TaskCard
+                          key={task.id}
+                          task={task}
+                          onStatusChange={onStatusChange}
+                        />
+                      ))}
                   </div>
                 </div>
               );
